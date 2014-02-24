@@ -1,0 +1,98 @@
+PyAACGUI2
+========
+
+A GUI glue program for converting high quality music using Nero AAC Codec. 
+As three of its dependencies are Unix/Linux programs, it is probably 
+not possible to use on Windows platform, though the graphic interface 
+itself is non-platform-related. 
+
+##Requirements##
+
+* `Python 2 `
+* `wxPython `
+* Unix `mediainfo ` program
+* Unix `mplayer ` program
+* Nero AAC programs for Linux (includes these executables: `neroAacDec `, 
+`neroAacEnc ` and `neroAacTag ` )
+
+##Usage##
+
+Run the bash script `PyAACGUI2 ` (you might need to run `chmod +x PyAACGUI2 ` 
+first). 
+
+This is a GUI program, so don't even think about passing file paths to it 
+through command line, it just doesn't work that way. 
+
+##Configuration##
+
+Only certain options are available in the `Preference ` dialog.
+
+All available configurations are stored in the `config.ini ` file. Available 
+options are as followed. Notice: Boolean values must be changed to int type 
+before being stored in config file (1 == True; 0 == False).
+
+* `locale ` Set UI locale.
+* `debug ` Set debug switch.
+* `tempdir ` Set temporary file directory.
+* `bitrate ` Set the bitrate (in bps) that passed to Nero AAC encoder.
+* `delorigin ` Delete original files after conversion.
+
+Default values are as followed:
+
+* `locale=en_US` (Set in `i.py `)
+* `debug=True` (Set in `i.py `)
+* `tempdir=` (Use result of python code `tempfile.gettempdir() `)
+* `bitrate=512000` (Set in `i.py `)
+* `delorigin=False` (Set in `i.py `)
+
+##License##
+
+This program uses BSD license, see the `BSD.license ` file for details. 
+The license content is also available in the `Help ` > `About ` section of 
+this program.
+
+##Author##
+
+[Joker Qyou](http://mynook.info/)
+
+##Extra##
+
+If you need a program to split audio CD image to separated tracks, 
+I personally recommend the Bash script `cue2tracks `. 
+
+###wxStart Guide###
+
+This project is based on wxStart template, 
+and here is a brief guideline for the developers.
+
+Directory structure:
+```
+PyAACGUI2
+    |-README                This README file
+    |-PyAACGUI2             Application entrance for user
+    |-main.py               The application entrance in Python
+    |-app.py                The customized App class
+    |-mainframe.py          The customized main frame class
+    |-i.py                  Contains basic information about this program
+    |-q.py                  Shortcut of commonly-used functions
+    |-config.ini            Configuration file
+    |-core/                 Core module
+    |    |-__init__.py      Empty file to make this folder a module
+    |    |-mediainfo.py     Media info query tool
+    |    |-converter.py     Background thread class
+    |
+    |-layout/               Contains XRC layout files
+    |    |-main.xrc         Default main frame layout file
+    |
+    |-resources/            Place any other files in it, such as images
+    |    |-icon_big.png     The default icon used in `about` dialog
+    |                       You should change this file to your own icon.
+    |-locale/               Contains locale files
+    |    |-zh_CN            Contains locale file for Chinese(Simplified) 
+    |        |              Note that this is only a example, you should
+    |        |              create your own locale using the same structure.
+    |        |-LC_MESSAGES  This folder contains the actual locale file (*.mo)
+    |                       Place compiled locale file PyAACGUI2.mo here, 
+    |                       and this program will support Chinese(Simplified).
+
+```

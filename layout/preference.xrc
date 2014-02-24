@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource>
+  <object class="wxFrame" name="preference">
+    <object class="wxPanel" name="prefpanel">
+      <object class="wxGridSizer">
+        <object class="sizeritem">
+          <object class="wxStaticText" name="bitratelabel">
+            <label>Bitrate: </label>
+          </object>
+          <flag>wxTOP|wxALIGN_CENTRE</flag>
+          <border>6</border>
+        </object>
+        <object class="sizeritem">
+          <object class="wxSpinCtrl" name="bitratespin">
+            <value>512</value>
+            <min>64</min>
+            <max>512</max>
+            <tooltip>Set bitrate (64 ~ 512)</tooltip>
+          </object>
+          <flag>wxTOP|wxBOTTOM</flag>
+          <border>16</border>
+        </object>
+        <object class="sizeritem">
+          <object class="wxStaticText" name="bitrateunittext">
+            <label>Kbps</label>
+          </object>
+          <flag>wxTOP|wxALIGN_LEFT</flag>
+          <border>21</border>
+        </object>
+        <object class="sizeritem">
+          <object class="wxStaticText" name="otheropttext">
+            <label>Others: </label>
+          </object>
+          <flag>wxTOP|wxALIGN_CENTRE</flag>
+          <border>6</border>
+        </object>
+        <object class="sizeritem">
+          <object class="wxCheckBox" name="debugcheck">
+            <label>Debug</label>
+            <tooltip>Set debug state</tooltip>
+          </object>
+          <flag>wxALL|wxEXPAND</flag>
+          <cellpos>1,0</cellpos>
+          <cellspan>1,1</cellspan>
+        </object>
+        <object class="sizeritem">
+          <object class="wxCheckBox" name="delorigincheck">
+            <label>Delete origin</label>
+            <tooltip>Delete original files after conversion</tooltip>
+          </object>
+          <flag>wxRIGHT|wxEXPAND</flag>
+          <border>20</border>
+        </object>
+        <object class="spacer">
+          <flag>wxALL|wxEXPAND</flag>
+        </object>
+        <object class="sizeritem">
+          <object class="wxButton" name="btncancel">
+            <label>Cancel</label>
+          </object>
+          <flag>wxBOTTOM|wxEXPAND</flag>
+          <border>20</border>
+        </object>
+        <object class="sizeritem">
+          <object class="wxButton" name="btnokay">
+            <label>Okay</label>
+          </object>
+          <flag>wxBOTTOM|wxRIGHT|wxEXPAND</flag>
+          <border>20</border>
+        </object>
+        <cols>3</cols>
+        <rows>3</rows>
+        <vgap>10</vgap>
+        <hgap>10</hgap>
+      </object>
+    </object>
+    <size>300,200</size>
+    <title>Preferences</title>
+    <centered>1</centered>
+    <style>wxDEFAULT_DIALOG_STYLE</style>
+  </object>
+</resource>

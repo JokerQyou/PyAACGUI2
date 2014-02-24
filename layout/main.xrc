@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource>
+  <object class="wxFrame" name="mainframe">
+    <size>900,600</size>
+    <centered>1</centered>
+    <object class="wxMenuBar" name="mainmenu">
+      <object class="wxMenu" name="menufile">
+        <label>File(&amp;F)</label>
+        <object class="wxMenuItem" name="menufilepref">
+          <label>Preferences</label>
+          <bitmap stock_id="wxART_HELP_SETTINGS"/>
+          <help>Show preference dialog</help>
+        </object>
+        <object class="wxMenuItem" name="menufilequit">
+          <label>Quit(&amp;Q)\tCtrl+Q</label>
+          <bitmap stock_id="wxART_QUIT"/>
+          <help>Quit this program</help>
+        </object>
+      </object>
+      <object class="wxMenu" name="menuhelp">
+        <label>Help(&amp;H)</label>
+        <object class="wxMenuItem" name="menuhelpabout">
+          <label>About(&amp;A)</label>
+          <bitmap stock_id="wxART_INFORMATION"/>
+          <help>Show information about this program</help>
+        </object>
+      </object>
+    </object>
+    <object class="wxToolBar" name="tools">
+      <object class="tool" name="toolopen">
+        <bitmap>resources/tools/add.png</bitmap>
+        <tooltip>Select file(s)</tooltip>
+        <longhelp>Select file(s) that you want to convert</longhelp>
+        <label>Select file(s)\tCtrl+O</label>
+      </object>
+      <object class="tool" name="toolconvert">
+        <bitmap>resources/tools/circle.png</bitmap>
+        <tooltip>Start conversion</tooltip>
+        <longhelp>Start converting selected files</longhelp>
+        <label>Start conversion</label>
+      </object>
+      <object class="tool" name="toolinfo">
+        <bitmap>resources/tools/info.png</bitmap>
+        <tooltip>Show about</tooltip>
+        <longhelp>Show information about this program</longhelp>
+        <label>Show about</label>
+      </object>
+      <object class="tool" name="toolquit">
+        <bitmap>resources/tools/quit.png</bitmap>
+        <tooltip>Quit</tooltip>
+        <longhelp>Quit this program</longhelp>
+        <label>Quit\tCtrl+Q</label>
+      </object>
+      <style>wxTB_FLAT</style>
+    </object>
+    <object class="wxPanel" name="mainpanel">
+      <object class="wxGridSizer">
+        <object class="sizeritem">
+          <object class="wxListCtrl" name="FILELIST">
+            <style>wxLC_REPORT|wxLC_HRULES</style>
+          </object>
+          <flag>wxALL|wxEXPAND</flag>
+          <border>20</border>
+        </object>
+      </object>
+    </object>
+    <object class="wxStatusBar" name="statusbar"/>
+    <title>PyAACGUI2</title>
+  </object>
+</resource>

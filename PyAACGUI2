@@ -1,0 +1,6 @@
+#!/bin/bash
+# Start up script for PyAACGUI2 on Linux
+# Author: Joker Qyou
+
+> debug.log && /usr/bin/env python2 main.py $*
+
