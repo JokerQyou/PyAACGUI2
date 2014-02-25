@@ -1,0 +1,6 @@
+#!/bin/bash
+# Translation deployment shell script for PyAACGUI2
+# Author: Joker Qyou
+
+ls | grep $1.po$ | xargs msgfmt --output-file=../locale/$1/LC_MESSAGES/PyAACGUI2.mo
+# set

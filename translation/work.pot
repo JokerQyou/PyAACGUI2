@@ -1,0 +1,146 @@
+# Original translation file for PyAACGUI2 program
+# Copyright (C) 2014 Omix
+# Joker Qyou <Joker.Qyou@gmail.com>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2014-02-25 19:19+中国标准时间\n"
+"PO-Revision-Date: 2014-02-25 19:20+中国标准时间\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# App description
+msgid "A GUI glue program for converting high quality music using Nero AAC Codec."
+msgstr ""
+
+msgid "Ready"
+msgstr ""
+
+msgid "File path"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Waiting"
+msgstr ""
+
+msgid "Select audio files"
+msgstr ""
+
+msgid "Processing file paths..."
+msgstr ""
+
+msgid "%d files queued."
+msgstr ""
+
+msgid "No file selected."
+msgstr ""
+
+msgid "Nothing to do"
+msgstr ""
+
+msgid "Conversion progress"
+msgstr ""
+
+msgid "Processing files: %d in total"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Converting"
+msgstr ""
+
+msgid "Processing files: %d of %d"
+msgstr ""
+
+msgid "All files converted."
+msgstr ""
+
+msgid "Queue processed"
+msgstr ""
+
+msgid "Conversion subprocess is still running."
+msgstr ""
+
+msgid "Subprocess running"
+msgstr ""
+
+msgid "Bitrate: "
+msgstr ""
+
+msgid "Set bitrate (64 ~ 512)"
+msgstr ""
+
+msgid "Others: "
+msgstr ""
+
+msgid "Debug"
+msgstr ""
+
+msgid "Set debug state"
+msgstr ""
+
+msgid "Delete origin"
+msgstr ""
+
+msgid "Delete original files after conversion"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Okay"
+msgstr ""
+
+msgid "Preferences"
+msgstr ""
+
+msgid "File(&F)"
+msgstr ""
+
+msgid "Show preference dialog"
+msgstr ""
+
+msgid "Quit(&Q)\tCtrl+Q"
+msgstr ""
+
+msgid "Quit"
+msgstr ""
+
+msgid "Quit this program"
+msgstr ""
+
+msgid "Help(&H)"
+msgstr ""
+
+msgid "About(&A)"
+msgstr ""
+
+msgid "Show information about this program"
+msgstr ""
+
+msgid "Select file(s)"
+msgstr ""
+
+msgid "Select file(s) that you want to convert"
+msgstr ""
+
+msgid "Start conversion"
+msgstr ""
+
+msgid "Start converting selected files"
+msgstr ""
+
+msgid "Show about"
+msgstr ""
+
+msgid "Quit this program"
+msgstr ""

@@ -1,0 +1,149 @@
+# Original translation file for PyAACGUI2 program
+# Copyright (C) 2014 Omix
+# Joker Qyou <Joker.Qyou@gmail.com>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2014-02-25 19:19+中国标准时间\n"
+"PO-Revision-Date: 2014-02-25 21:36+中国标准时间\n"
+"Last-Translator: Joker Qyou <Joker.Qyou@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Language: zh_CN\n"
+"X-Source-Language: C\n"
+
+# App description
+msgid "A GUI glue program for converting high quality music using Nero AAC Codec."
+msgstr "用于使用 Nero AAC 编解码器转换高品质音乐的图形界面胶水程序。"
+
+# Below are strings from `mainframe.py `
+msgid "Ready"
+msgstr "就绪"
+
+msgid "File path"
+msgstr "文件路径"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Waiting"
+msgstr "等待中"
+
+msgid "Select audio files"
+msgstr "选择音频文件"
+
+msgid "Processing file paths..."
+msgstr "正在处理文件路径……"
+
+msgid "%d files queued."
+msgstr "队列中有%d个文件"
+
+msgid "No file selected."
+msgstr "没有选择文件。"
+
+msgid "Nothing to do"
+msgstr "无事可做"
+
+msgid "Conversion progress"
+msgstr "转换进度"
+
+msgid "Processing files: %d in total"
+msgstr "正在处理文件：共%d个文件"
+
+msgid "Done"
+msgstr "完成"
+
+msgid "Converting"
+msgstr "转换中"
+
+msgid "Processing files: %d of %d"
+msgstr "正在处理第%d个文件，共%d个"
+
+msgid "All files converted."
+msgstr "所有文件都已转换完成。"
+
+msgid "Queue processed"
+msgstr "队列处理完毕"
+
+msgid "Conversion subprocess is still running."
+msgstr "转换进程仍在运行。"
+
+msgid "Subprocess running"
+msgstr "子进程正在运行"
+
+# Below are strings from `prefrence.xrc `
+msgid "Bitrate: "
+msgstr "码率："
+
+msgid "Set bitrate (64 ~ 512)"
+msgstr "设置码率（64至512）"
+
+msgid "Others: "
+msgstr "其他："
+
+msgid "Debug"
+msgstr "调试"
+
+msgid "Set debug state"
+msgstr "设置调试模式"
+
+msgid "Delete origin"
+msgstr "删除源文件"
+
+msgid "Delete original files after conversion"
+msgstr "转换完成后删除源文件"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Okay"
+msgstr "确定"
+
+msgid "Preferences"
+msgstr "首选项"
+
+# Below are strings from `main.xrc `
+msgid "File(&F)"
+msgstr "文件(&F)"
+
+msgid "Show preference dialog"
+msgstr "显示首选项对话框"
+
+msgid "Quit(&Q)\tCtrl+Q"
+msgstr "退出(&Q)\tCtrl+Q"
+
+msgid "Quit"
+msgstr "退出"
+
+msgid "Quit this program"
+msgstr "退出此程序"
+
+msgid "Help(&H)"
+msgstr "帮助(&H)"
+
+msgid "About(&A)"
+msgstr "关于(&A)"
+
+msgid "Show information about this program"
+msgstr "显示关于此程序的信息"
+
+msgid "Select file(s)"
+msgstr "选择文件"
+
+msgid "Select file(s) that you want to convert"
+msgstr "选择要转换的文件"
+
+msgid "Start conversion"
+msgstr "开始转换"
+
+msgid "Start converting selected files"
+msgstr "开始转换选中的文件"
+
+msgid "Show about"
+msgstr "显示关于"
+
