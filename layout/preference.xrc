@@ -74,7 +74,7 @@
         <hgap>10</hgap>
       </object>
     </object>
-    <size>300,200</size>
+    <size>400,200</size>
     <title>Preferences</title>
     <centered>1</centered>
     <style>wxDEFAULT_DIALOG_STYLE</style>
