@@ -6,6 +6,10 @@ As three of its dependencies are Unix/Linux programs, it is probably
 not possible to use on Windows platform, though the graphic interface 
 itself is non-platform-related. 
 
+And for Windows users, the `Foobar 2000 ` seems to be good enough, it has a 
+converter that supports Nero AAC Encoder. What's cool, it uses multiple 
+subprocesses in conversion, so it works much faster than this program. 
+
 ##Requirements##
 
 * `Python 2 `
@@ -79,6 +83,10 @@ Default values are as follows:
 * `tempdir=` (Use result of python code `tempfile.gettempdir() `)
 * `bitrate=512000` (Set in `i.py `)
 * `delorigin=False` (Set in `i.py `)
+
+###Notice!###
+
+Setting `tempdir ` option to `/dev/shm ` might slightly speed up conversion. 
 
 ##License##
 
