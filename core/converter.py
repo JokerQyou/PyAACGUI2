@@ -63,7 +63,6 @@ class Converter(threading.Thread):
 
             self.ENCODER = encoder
             self.TAGGER = tagger
-            print self.ENCODER, self.TAGGER
 
     def isDone(self):
         '''
