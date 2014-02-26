@@ -11,6 +11,7 @@ import shutil
 import subprocess
 import tempfile as t
 import threading
+import time
 
 import wx
 
@@ -84,6 +85,10 @@ class Converter(threading.Thread):
                 '-of', dest # Set output file
                 ], stdin = subprocess.PIPE)
             while not aacProgress.returncode == 0:
+                # Instead of polling at max possible frequency, wait a short 
+                # time would lower CPU usage efficiently, and cause nearly 
+                # no difference in other ways.
+                time.sleep(i.PROCESS_POLL_INTERVAL)
                 aacProgress.poll()
             return aacProgress.returncode
 
@@ -112,6 +117,7 @@ class Converter(threading.Thread):
                 )
             tagProcess =  subprocess.Popen(cmdline)
             while not tagProcess.returncode == 0:
+                time.sleep(i.PROCESS_POLL_INTERVAL)
                 tagProcess.poll()
             return tagProcess.returncode
 
@@ -156,7 +162,7 @@ class Converter(threading.Thread):
                         destFname, 
                         mediainfo = minfo
                         )
-                    
+
                     # Delete original file if DELORIGIN set to `True `
                     if self.DELORIGIN:
                         os.remove(item)
