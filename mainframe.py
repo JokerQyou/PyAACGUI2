@@ -118,7 +118,7 @@ class MainFrame(wx.Frame):
             0, 
             _('File path'), 
             format = wx.LIST_FORMAT_LEFT, 
-            width = 500
+            width = 750
             )
         self.FILELIST.InsertColumn(
             1, 
