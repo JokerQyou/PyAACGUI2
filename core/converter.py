@@ -72,10 +72,7 @@ class Converter(threading.Thread):
         if not dest:
             return 1
         else:
-            # I don't know what's happened here, cause if I use 
-            # `subprocess.Popen().wait() ` here, it will 100% raise 
-            # core dump. So I use `Popen().poll() ` now. 
-            aacProgress = subprocess.Popen([
+            return subprocess.Popen([
                 'neroAacEnc', 
                 '-br', str(self.BITRATE), # Set bitrate
                 '-2pass', # Use 2 pass
@@ -83,14 +80,7 @@ class Converter(threading.Thread):
                 '-lc', # Use LC AAC profile
                 '-if', fname, # Set input file
                 '-of', dest # Set output file
-                ], stdin = subprocess.PIPE)
-            while not aacProgress.returncode == 0:
-                # Instead of polling at max possible frequency, wait a short 
-                # time would lower CPU usage efficiently, and cause nearly 
-                # no difference in other ways.
-                time.sleep(i.PROCESS_POLL_INTERVAL)
-                aacProgress.poll()
-            return aacProgress.returncode
+                ], stdin = subprocess.PIPE).wait()
 
     def prepare4TagCmd(self, fname, mediainfo = {}):
         '''
@@ -115,11 +105,7 @@ class Converter(threading.Thread):
                 fname, 
                 mediainfo = mediainfo
                 )
-            tagProcess =  subprocess.Popen(cmdline)
-            while not tagProcess.returncode == 0:
-                time.sleep(i.PROCESS_POLL_INTERVAL)
-                tagProcess.poll()
-            return tagProcess.returncode
+            return subprocess.Popen(cmdline).wait()
 
     def run(self):
         waveext, aacext = '.wav', '.m4a'
