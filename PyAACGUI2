@@ -2,5 +2,11 @@
 # Start up script for PyAACGUI2 on Linux
 # Author: Joker Qyou
 
-> debug.log && /usr/bin/env python2 main.py $*
-
+prog_dir=`dirname "$BASH_SOURCE"`
+debug_log="debug.log"
+entrance_script="main.py"
+if [ -f $prog_dir/$entrance_script ]; then
+    cd $prog_dir
+    > $debug_log
+    /usr/bin/env python2 $entrance_script $*
+fi
