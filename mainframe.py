@@ -54,6 +54,17 @@ class MainFrame(wx.Frame):
         pre = resource.LoadFrame(None, 'mainframe')
         self.PostCreate(pre)
 
+        # Set icon to window so it would not look so ugly. 
+        # Notice that on Windows the resolution of the icon on the title bar 
+        # cannot be too large, so this line would probably not work.
+        self.SetIcon(wx.Icon(i.APP_BIG_ICON_FILE, wx.BITMAP_TYPE_PNG))
+
+        # Setting min size to a quarter of screen size would be suitable, 
+        # many desktop environment has docking feature, which allows a window 
+        # to be resized to half or quarter the size of screen. If the min 
+        # size set was too large, the docking feature will not take effect.
+        self.SetMinSize((wx.DisplaySize()[0] / 2, wx.DisplaySize()[1] / 2))
+
         # Set default values of additional attributes
         self.FILELIST, self.QUEUE, self.CONVERTER = None, set(), None
         self.PROGRESS = None
