@@ -15,6 +15,41 @@ itself is non-platform-related.
 * Nero AAC programs for Linux (includes these executables: `neroAacDec `, 
 `neroAacEnc ` and `neroAacTag ` )
 
+###Notice!###
+
+I cannot redistribute any part of Nero AAC Codecs according to the license 
+agreement provided by Nero AG. So it is important that you have these 
+programs installed correctly. Here's a brief introduction. 
+
+For Nero AAC programs, go to the official site of Nero AG, search for `AAC 
+Encoder `, download the compressed file from its introduction page (you'll 
+have to agree that license agreement first). Decompress the package and the 
+contents are as follows:
+
+```
+NeroAACCodec-1.5.1/
+    |-linux/
+    |   |-neroAacDec
+    |   |-neroAacEnc
+    |   |-neroAacTag
+    |-win32/
+    |   |-neroAacDec.exe
+    |   |-neroAacEnc.exe
+    |   |-neroAacTag.exe
+    |-changelog.txt
+    |-license.txt
+    |-NeroAAC_tut.pdf
+    |-readme.txt
+```
+
+Now copy these three files inside the `linux ` folder to anywhere you want, 
+and add the path of the folder containing them to your `.bashrc ` file. 
+
+E.G. I put these three files inside `/home/joker/ETC/tools/ `, so I added 
+the following line to the end of my `.bashrc ` file (`~/.bashrc `):
+
+`export PATH=${PATH}:/home/joker/ETC/tools `
+
 ##Usage##
 
 Run the bash script `PyAACGUI2 ` (you might need to run `chmod +x PyAACGUI2 ` 
@@ -28,7 +63,7 @@ through command line, it just doesn't work that way.
 Only certain options are available in the `Preference ` dialog.
 
 All available configurations are stored in the `config.ini ` file. Available 
-options are as followed. Notice: Boolean values must be changed to int type 
+options are as follows. Notice: Boolean values must be changed to int type 
 before being stored in config file (1 == True; 0 == False).
 
 * `locale ` Set UI locale.
@@ -37,7 +72,7 @@ before being stored in config file (1 == True; 0 == False).
 * `bitrate ` Set the bitrate (in bps) that passed to Nero AAC encoder.
 * `delorigin ` Delete original files after conversion.
 
-Default values are as followed:
+Default values are as follows:
 
 * `locale=en_US` (Set in `i.py `)
 * `debug=True` (Set in `i.py `)
@@ -62,17 +97,19 @@ I personally recommend the Bash script `cue2tracks `.
 
 ###wxStart Guide###
 
-This project is based on wxStart template, 
+This project is based on `wxStart ` template, 
 and here is a brief guideline for the developers.
 
 Directory structure:
 ```
 PyAACGUI2
     |-README                This README file
+    |-BSD.license           License file
     |-PyAACGUI2             Application entrance for user
     |-main.py               The application entrance in Python
     |-app.py                The customized App class
     |-mainframe.py          The customized main frame class
+    |-pref.py               Preference frame class
     |-i.py                  Contains basic information about this program
     |-q.py                  Shortcut of commonly-used functions
     |-config.ini            Configuration file
@@ -83,10 +120,12 @@ PyAACGUI2
     |
     |-layout/               Contains XRC layout files
     |    |-main.xrc         Default main frame layout file
+    |    |-preference.xrc   Preference dialog layout file
     |
     |-resources/            Place any other files in it, such as images
     |    |-icon_big.png     The default icon used in `about` dialog
-    |                       You should change this file to your own icon.
+    |    |                  You should change this file to your own icon.
+    |    |-tools/           Contains icons used for tool bar.
     |-locale/               Contains locale files
     |    |-zh_CN            Contains locale file for Chinese(Simplified) 
     |        |              Note that this is only a example, you should
