@@ -54,6 +54,17 @@ the following line to the end of my `.bashrc ` file (`~/.bashrc `):
 
 `export PATH=${PATH}:/home/joker/ETC/tools `
 
+###Experimental###
+
+You could now set location of needed Nero programs in the config file rather 
+than setting them in your `.bashrc ` file. If you don't want to change the 
+global `PATH ` variable, you can try this experimental feature by setting 
+the `enc ` and `tag ` option values in config file.
+
+* `enc ` Set the location (currently absolute path recommended) of Nero AAC 
+Encoder.
+* `tag ` Set the location of Nero MPEG-4 Tagger.
+
 ##Usage##
 
 Run the bash script `PyAACGUI2 ` (you might need to run `chmod +x PyAACGUI2 ` 

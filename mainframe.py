@@ -198,6 +198,21 @@ class MainFrame(wx.Frame):
                 parent = self.GetToolBar()
                 )
             C = wx.GetApp().CONFIG
+
+            # Find absolute path of encoder and tagger executables if they 
+            # were set in config file, otherwise use default values.
+            encpath = C.Read(i.APP_CONFIG_ENC_PATH_KEY, '')
+            tagpath = C.Read(i.APP_CONFIG_TAG_PATH_KEY, '')
+            if not encpath:
+                encpath = i.NERO_ENC_DEFAULT_PATH
+            else:
+                encpath = os.path.abspath(encpath)
+            if not tagpath:
+                tagpath = i.NERO_TAG_DEFAULT_PATH
+            else:
+                tagpath = os.path.abspath(tagpath)
+
+            # Create background thread to do the actual work.
             self.CONVERTER = converter.Converter(
                 caller = self, 
                 queue = self.QUEUE, 
@@ -212,8 +227,12 @@ class MainFrame(wx.Frame):
                 delorigin = C.ReadBool(
                     i.APP_CONFIG_DELORIGIN_KEY, 
                     i.APP_DEFAULT_DELORIGIN
-                    )
+                    ), 
+                encoder = encpath, 
+                tagger = tagpath
                 )
+
+            # Show progress dialog and do the actual conversion.
             self.PROGRESS = wx.ProgressDialog(
                 _('Conversion progress'), 
                 _('Processing files: %d in total') % len(self.QUEUE), 

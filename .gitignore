@@ -24,3 +24,6 @@ lib64
 
 # Any test file
 *test*.*
+
+# Executables owned by Nero AG
+neroAac*

@@ -33,14 +33,37 @@ class Converter(threading.Thread):
         queue = [], 
         tempdir = t.gettempdir(), 
         bitrate = 512000, 
-        delorigin = False):
-        threading.Thread.__init__(self)
-        self.CALLER = caller
-        self.QUEUE = list(queue)
-        self.DONE = []
-        self.TEMPDIR = tempdir
-        self.BITRATE = bitrate
-        self.DELORIGIN = delorigin
+        delorigin = False, 
+        encoder = None, 
+        tagger = None):
+        '''
+        Init function
+        Args:
+            caller <wx.Frame> Set the UI thread
+            queue <set | list> Set queue to process
+            tempdir <string> Set temporary file directory
+            bitrate <int> Set bitrate
+            delorigin <bool> Delete original files after conversion
+            encoder <string> Set path to encoder executable
+            tagger <string> Set path to tagger executable
+        Notice:
+            All args with `None ` as default value are not optional.
+            Missing one of these args will raise RuntimeError.
+        '''
+        if not caller or not encoder or not tagger:
+            raise RuntimeError
+        else:
+            threading.Thread.__init__(self)
+            self.CALLER = caller
+            self.QUEUE = list(queue)
+            self.DONE = []
+            self.TEMPDIR = tempdir
+            self.BITRATE = bitrate
+            self.DELORIGIN = delorigin
+
+            self.ENCODER = encoder
+            self.TAGGER = tagger
+            print self.ENCODER, self.TAGGER
 
     def isDone(self):
         '''
@@ -73,7 +96,7 @@ class Converter(threading.Thread):
             return 1
         else:
             return subprocess.Popen([
-                'neroAacEnc', 
+                self.ENCODER, 
                 '-br', str(self.BITRATE), # Set bitrate
                 '-2pass', # Use 2 pass
                 '-ignorelength', # Ignore length info in header
@@ -86,7 +109,7 @@ class Converter(threading.Thread):
         '''
         Prepare for Nero AAC tagging cmdline.
         '''
-        tagCmdline = ['neroAacTag', fname]
+        tagCmdline = [self.TAGGER, fname]
         for key in mediainfo:
             if mediainfo[key].strip():
                 tagCmdline.append(
