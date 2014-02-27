@@ -214,14 +214,14 @@ class MainFrame(wx.Frame):
             # were set in config file, otherwise use default values.
             encpath = C.Read(i.APP_CONFIG_ENC_PATH_KEY, '')
             tagpath = C.Read(i.APP_CONFIG_TAG_PATH_KEY, '')
-            if not encpath:
-                encpath = i.NERO_ENC_DEFAULT_PATH
-            else:
+            if encpath and q.fileexists(os.path.abspath(encpath)):
                 encpath = os.path.abspath(encpath)
-            if not tagpath:
-                tagpath = i.NERO_TAG_DEFAULT_PATH
             else:
+                encpath = i.NERO_ENC_DEFAULT_PATH
+            if tagpath and q.fileexists(os.path.abspath(tagpath)):
                 tagpath = os.path.abspath(tagpath)
+            else:
+                tagpath = i.NERO_TAG_DEFAULT_PATH
 
             # Create background thread to do the actual work.
             self.CONVERTER = converter.Converter(
