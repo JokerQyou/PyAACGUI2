@@ -172,7 +172,7 @@ class Converter(threading.Thread):
                         )
 
                     # Delete original file if DELORIGIN set to `True `
-                    if self.DELORIGIN:
+                    if self.DELORIGIN and q.fileexists(destFname):
                         os.remove(item)
                 else:
                     print 'Error occurred during convert2Wave.'
@@ -184,7 +184,7 @@ class Converter(threading.Thread):
                 self.convert2Aac(tempFname, dest = destFname)
 
                 # Delete original file if DELORIGIN set to `True `
-                if self.DELORIGIN:
+                if self.DELORIGIN and q.fileexists(destFname):
                     os.remove(item)
 
             self.DONE.append(item)

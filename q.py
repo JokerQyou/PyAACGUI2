@@ -102,3 +102,11 @@ def reformfilename(fname, strict = True, baseonly = True):
     originFname = dropext(fname, baseonly = baseonly)
     newFname = rmwiredchars(originFname, strict = strict)
     return newFname + ext
+
+
+def fileexists(fpath):
+    '''
+    Detect whether the given file path exists.
+    '''
+    return os.path.exists(os.path.abspath(fpath)) and \
+        os.path.isfile(os.path.abspath(fpath))
