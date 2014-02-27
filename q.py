@@ -79,8 +79,8 @@ def enabletools(ids, parent = None):
 def rmwiredchars(fname, strict = True):
     '''
     Remove wired characters from given file name.
-    This is used to avoid non-respondence during the subprocess 
-    call to `neroAacTag `.
+    This is used to avoid returning empty XML during the subprocess 
+    call to Unix `mediainfo ` program.
     '''
     if strict:
         return fname\
@@ -88,9 +88,10 @@ def rmwiredchars(fname, strict = True):
             .replace('!', '')\
             .replace(';', ' - ')\
             .replace(':', ' - ')\
-            .replace(',', ' & ')
+            .replace(',', ' & ')\
+            .replace('*', 'x')
     else:
-        return fname.replace('?', '')
+        return fname.replace('?', '').replace('*', 'x')
 
 
 def reformfilename(fname, strict = True, baseonly = True):
