@@ -152,7 +152,7 @@ class Converter(threading.Thread):
                     # '?' in its name, so we'll have to get a copy of that 
                     # file and rename the copy, or this program will probably 
                     # hang up here.
-                    if '?' in item:
+                    if q.containwiredchar(item):
                         tempFile4tag = os.path.join(
                             self.TEMPDIR, 
                             q.reformfilename(

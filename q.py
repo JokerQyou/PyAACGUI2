@@ -110,3 +110,10 @@ def fileexists(fpath):
     '''
     return os.path.exists(os.path.abspath(fpath)) and \
         os.path.isfile(os.path.abspath(fpath))
+
+
+def containwiredchar(text):
+    '''
+    Detect whether there's wired chars in given string.
+    '''
+    return '?' in text or '*' in text
