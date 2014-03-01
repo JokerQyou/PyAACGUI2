@@ -58,7 +58,7 @@ class App(wx.App):
         global L
         _localeConst = L.FindLanguageInfo(langCode).Language
         L.Init(_localeConst)
-        L.AddCatalogLookupPathPrefix('locale')
+        L.AddCatalogLookupPathPrefix(i.APP_LOCALE_DIR)
         L.AddCatalog(i.APP_NAME)
         self.LOCALE = L
 

@@ -43,6 +43,7 @@ APP_WEBSITE = u''
 APP_DESCRIPTION = u'A GUI glue program for converting high quality music using Nero AAC Codec.'
 APP_DEBUG = True
 
+APP_LOCALE_DIR = u'locale'
 APP_MAIN_LAYOUT_FILE = u'layout/main.xrc'
 APP_PREF_LAYOUT_FILE = u'layout/preference.xrc'
 APP_BIG_ICON_FILE = u'resources/icon_big.png'
