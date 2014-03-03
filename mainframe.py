@@ -183,7 +183,7 @@ class MainFrame(wx.Frame):
         if dlg.ShowModal() == wx.ID_OK:
             self.SetStatusText(_('Processing file paths...'))
             fnames = dlg.GetPaths()
-            self.QUEUE = list(set(fnames))
+            self.QUEUE = list(set(self.QUEUE + fnames))
             self.QUEUE.sort()
             self.fillFileList(self.QUEUE)
             self.SetStatusText(_('%d files queued.') % len(self.QUEUE))
