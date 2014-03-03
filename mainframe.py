@@ -226,7 +226,7 @@ class MainFrame(wx.Frame):
                 tagpath = i.NERO_TAG_DEFAULT_PATH
 
             # Create background thread to do the actual work.
-            self.CONVERTER = converter.Converter(
+            self.CONVERTER = converter.ConversionMgr(
                 caller = self, 
                 callback = self.updateProgress, 
                 queue = self.QUEUE, 

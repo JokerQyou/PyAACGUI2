@@ -17,9 +17,9 @@ import core
 __author__ = 'Joker Qyou'
 
 
-class Converter(threading.Thread):
+class ConversionMgr(threading.Thread):
     '''
-    Converter thread class for PyAACGUI2
+    Conversion manager thread class for PyAACGUI2
     '''
     def __init__(self, 
         caller = None, 
@@ -78,11 +78,10 @@ class Converter(threading.Thread):
         '''
         Return the status of conversion.
         '''
-        return True
-        # if (len(self.QUEUE) - len(self.DONE)) == 0:
-        #     return True
-        # else:
-        #     return False
+        if (len(self.QUEUE) - len(self.DONE)) == 0:
+            return True
+        else:
+            return False
 
     def run(self):
         '''
