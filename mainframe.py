@@ -180,6 +180,7 @@ class MainFrame(wx.Frame):
             fFilters, # File type filters
             wx.OPEN | wx.MULTIPLE
             )
+        q.disabletools(['toolopen'], parent = self.GetToolBar())
         if dlg.ShowModal() == wx.ID_OK:
             self.SetStatusText(_('Processing file paths...'))
             fnames = dlg.GetPaths()
@@ -188,6 +189,7 @@ class MainFrame(wx.Frame):
             self.fillFileList(self.QUEUE)
             self.SetStatusText(_('%d files queued.') % len(self.QUEUE))
         dlg.Destroy()
+        q.enabletools(['toolopen'], parent = self.GetToolBar())
 
     def OnConversionStart(self, event):
         '''
