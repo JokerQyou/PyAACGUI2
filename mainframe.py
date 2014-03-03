@@ -66,7 +66,7 @@ class MainFrame(wx.Frame):
         self.SetMinSize((wx.DisplaySize()[0] / 2, wx.DisplaySize()[1] / 2))
 
         # Set default values of additional attributes
-        self.FILELIST, self.QUEUE, self.CONVERTER = None, set(), None
+        self.FILELIST, self.QUEUE, self.CONVERTER = None, [], None
         self.PROGRESS = None
 
         # Insert rows into list ctrl
@@ -182,7 +182,8 @@ class MainFrame(wx.Frame):
         if dlg.ShowModal() == wx.ID_OK:
             self.SetStatusText(_('Processing file paths...'))
             fnames = dlg.GetPaths()
-            self.QUEUE = self.QUEUE.union(set(fnames))
+            self.QUEUE = list(set(fnames))
+            self.QUEUE.sort()
             self.fillFileList(self.QUEUE)
             self.SetStatusText(_('%d files queued.') % len(self.QUEUE))
         dlg.Destroy()
@@ -226,6 +227,7 @@ class MainFrame(wx.Frame):
             # Create background thread to do the actual work.
             self.CONVERTER = converter.Converter(
                 caller = self, 
+                callback = self.updateProgress, 
                 queue = self.QUEUE, 
                 tempdir = C.Read(
                     i.APP_CONFIG_TEMPDIR_KEY, 
@@ -243,35 +245,19 @@ class MainFrame(wx.Frame):
                 tagger = tagpath
                 )
 
-            # Show progress dialog and do the actual conversion.
-            self.PROGRESS = wx.ProgressDialog(
-                _('Conversion progress'), 
-                _('Processing files: %d in total') % len(self.QUEUE), 
-                len(self.QUEUE), 
-                style = wx.PD_AUTO_HIDE
-                )
             self.CONVERTER.start()
 
-    def updateProgress(self, current):
+    def updateProgress(self, *args):
         '''
-        Update progress dialog UI.
+        Update progress.
         '''
-        self.FILELIST.SetStringItem(current - 1, 1, _('Done'))
-        self.FILELIST.SetStringItem(current, 1, _('Converting'))
-        self.PROGRESS.Update(
-            current, 
-            newmsg = _('Processing files: %d of %d') % \
-                (current + 1, len(self.QUEUE))
-            )
+        index = self.QUEUE.index(args[0])
+        self.FILELIST.SetStringItem(index, 1, _(args[1]))
 
     def OnConversionDone(self):
         '''
         Callback on background thread done.
         '''
-        # Update progress dialog to its max value, so it would disappear
-        self.FILELIST.SetStringItem(len(self.QUEUE) - 1, 1, _('Done'))
-        self.PROGRESS.Update(len(self.QUEUE))
-
         # Pop a message to user
         dlg = wx.MessageDialog(
             None, 
@@ -283,7 +269,7 @@ class MainFrame(wx.Frame):
         dlg.Destroy()
 
         # Clear file queue to be ready for next conversion
-        self.QUEUE = set()
+        self.QUEUE = []
         self.SetStatusText(
             _('%d files queued.') % len(self.QUEUE)
             )
