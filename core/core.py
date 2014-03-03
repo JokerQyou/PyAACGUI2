@@ -31,6 +31,7 @@ class Converter(threading.Thread):
         callback = None, 
         tempdir = t.gettempdir(), 
         index = 0, 
+        parent = None, 
         delorigin = False, 
         encoder = None, 
         tagger = None, 
@@ -39,6 +40,7 @@ class Converter(threading.Thread):
         if not fpath or \
             not type(index) == int or \
             not callback or \
+            not parent or \
             not encoder or \
             not tagger:
             raise RuntimeError
@@ -47,6 +49,7 @@ class Converter(threading.Thread):
         self.TEMPDIR = tempdir
         self.FILE = fpath
         self.CALL_INDEX = index
+        self.PARENT = parent
         self.DELORIGIN = delorigin
 
         self.ENCODER = encoder
@@ -152,6 +155,7 @@ class Converter(threading.Thread):
                 if self.DELORIGIN and q.fileexists(destFname):
                     os.remove(self.FILE)
                 wx.CallAfter(self.CALLBACK, self.FILE, 'Done')
+                self.PARENT.DONE.append(self.CALL_INDEX)
             else:
                 wx.CallAfter(self.CALLBACK, self.FILE, 'Error')
         # For WAVE files, encode directly using Nero AAC codec, and since 
@@ -165,4 +169,4 @@ class Converter(threading.Thread):
             if self.DELORIGIN and q.fileexists(destFname):
                 os.remove(self.FILE)
             wx.CallAfter(self.CALLBACK, self.FILE, 'Done')
-
+            self.PARENT.DONE.append(self.CALL_INDEX)

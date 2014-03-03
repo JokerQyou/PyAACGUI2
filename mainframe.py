@@ -4,6 +4,7 @@
 Customized main frame class
 '''
 
+import multiprocessing
 import os
 import tempfile
 import threading
@@ -242,7 +243,11 @@ class MainFrame(wx.Frame):
                     i.APP_DEFAULT_DELORIGIN
                     ), 
                 encoder = encpath, 
-                tagger = tagpath
+                tagger = tagpath, 
+                maxcorenum = C.ReadInt(
+                    i.APP_CONFIG_CORE_NUM_KEY, 
+                    multiprocessing.cpu_count()
+                    )
                 )
 
             self.SetStatusText(_('Processing files, please wait...'))

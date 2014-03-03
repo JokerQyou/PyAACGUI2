@@ -29,17 +29,20 @@ class Converter(threading.Thread):
         bitrate = 512000, 
         delorigin = False, 
         encoder = None, 
-        tagger = None):
+        tagger = None, 
+        maxcorenum = multiprocessing.cpu_count()):
         '''
         Init function
         Args:
-            callback <func> Set the UI thread
+            caller <wx.Frame> Set the UI thread
+            callback <func> Which function to call inside child thread
             queue <set | list> Set queue to process
             tempdir <string> Set temporary file directory
             bitrate <int> Set bitrate
             delorigin <bool> Delete original files after conversion
             encoder <string> Set path to encoder executable
             tagger <string> Set path to tagger executable
+            maxcorenum <int> Set max job number
         Notice:
             All args with `None ` as default value are not optional.
             Missing one of these args will raise RuntimeError.
@@ -63,6 +66,8 @@ class Converter(threading.Thread):
             self.ENCODER = encoder
             self.TAGGER = tagger
 
+            self.MAX_CORE_NUM = maxcorenum
+
     def progress(self):
         '''
         Return conversion progress in (done, total) format.
@@ -83,13 +88,10 @@ class Converter(threading.Thread):
         '''
         Start conversion sub-threads to do the actual work.
         '''
-        # Get the maximum threads number according to CPU core count
-        CORES = multiprocessing.cpu_count()
-
         # Start N threads each time and wait for their exiting
-        for index in range(0, len(self.QUEUE), CORES):
+        for index in range(0, len(self.QUEUE), self.MAX_CORE_NUM):
             threads = []
-            for sindex in range(0, CORES):
+            for sindex in range(0, self.MAX_CORE_NUM):
                 findex = index + sindex
                 try:
                     fname = self.QUEUE[findex]
@@ -98,6 +100,7 @@ class Converter(threading.Thread):
                         callback = self.CALLBACK, 
                         tempdir = self.TEMPDIR, 
                         index = findex, 
+                        parent = self, 
                         delorigin = self.DELORIGIN, 
                         encoder = self.ENCODER, 
                         tagger = self.TAGGER, 
@@ -109,8 +112,6 @@ class Converter(threading.Thread):
                     pass
             for thread in threads:
                 thread.join()
-            for thread in threads:
-                self.DONE.append(thread.CALL_INDEX)
 
         wx.CallAfter(self.CALLER.OnConversionDone)
         
