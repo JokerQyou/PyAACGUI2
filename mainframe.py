@@ -245,6 +245,7 @@ class MainFrame(wx.Frame):
                 tagger = tagpath
                 )
 
+            self.SetStatusText(_('Processing files, please wait...'))
             self.CONVERTER.start()
 
     def updateProgress(self, *args):
@@ -253,6 +254,9 @@ class MainFrame(wx.Frame):
         '''
         index = self.QUEUE.index(args[0])
         self.FILELIST.SetStringItem(index, 1, _(args[1]))
+        self.SetStatusText(
+            _('Processing files: %d of %d') % self.CONVERTER.progress()
+            )
 
     def OnConversionDone(self):
         '''

@@ -7,11 +7,8 @@ Work as background thread in cooperation with GUI part.
 '''
 
 import multiprocessing
-import os
-import subprocess
 import tempfile as t
 import threading
-import time
 
 import wx
 
@@ -56,9 +53,8 @@ class Converter(threading.Thread):
             threading.Thread.__init__(self)
             self.CALLER = caller
             self.CALLBACK = callback
-            queue = list(queue)
-            queue.sort()
-            self.QUEUE = queue
+            self.QUEUE = list(queue)
+            self.QUEUE.sort()
             self.DONE = []
             self.TEMPDIR = tempdir
             self.BITRATE = bitrate
@@ -66,6 +62,12 @@ class Converter(threading.Thread):
 
             self.ENCODER = encoder
             self.TAGGER = tagger
+
+    def progress(self):
+        '''
+        Return conversion progress in (done, total) format.
+        '''
+        return (len(self.DONE), len(self.QUEUE))
 
     def isDone(self):
         '''
@@ -78,13 +80,17 @@ class Converter(threading.Thread):
         #     return False
 
     def run(self):
+        '''
+        Start conversion sub-threads to do the actual work.
+        '''
+        # Get the maximum threads number according to CPU core count
         CORES = multiprocessing.cpu_count()
 
+        # Start N threads each time and wait for their exiting
         for index in range(0, len(self.QUEUE), CORES):
             threads = []
             for sindex in range(0, CORES):
                 findex = index + sindex
-                print 'index:%d , sindex:%d , findex:%d' % (index, sindex, findex)
                 try:
                     fname = self.QUEUE[findex]
                     thread = core.Converter(
@@ -103,6 +109,8 @@ class Converter(threading.Thread):
                     pass
             for thread in threads:
                 thread.join()
+            for thread in threads:
+                self.DONE.append(thread.CALL_INDEX)
 
         wx.CallAfter(self.CALLER.OnConversionDone)
         
