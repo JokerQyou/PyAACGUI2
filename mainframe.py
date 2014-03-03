@@ -225,6 +225,16 @@ class MainFrame(wx.Frame):
             else:
                 tagpath = i.NERO_TAG_DEFAULT_PATH
 
+            # Compare the core number given by user (if exists) with the 
+            # real core number. If the computer does not have that much 
+            # cores as the user said, use the real core number.
+            corenumber = C.ReadInt(
+                i.APP_CONFIG_CORE_NUM_KEY, 
+                multiprocessing.cpu_count()
+                )
+            if corenumber > multiprocessing.cpu_count():
+                corenumber = multiprocessing.cpu_count()
+
             # Create background thread to do the actual work.
             self.CONVERTER = converter.ConversionMgr(
                 caller = self, 
@@ -244,10 +254,7 @@ class MainFrame(wx.Frame):
                     ), 
                 encoder = encpath, 
                 tagger = tagpath, 
-                maxcorenum = C.ReadInt(
-                    i.APP_CONFIG_CORE_NUM_KEY, 
-                    multiprocessing.cpu_count()
-                    )
+                maxcorenum = corenumber
                 )
 
             self.SetStatusText(_('Processing files, please wait...'))
