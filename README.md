@@ -6,9 +6,19 @@ As three of its dependencies are Unix/Linux programs, it is probably
 not possible to use on Windows platform, though the graphic interface 
 itself is non-platform-related. 
 
-And for Windows users, the `Foobar 2000 ` seems to be good enough, it has a 
-converter that supports Nero AAC Encoder. What's cool, it uses multiple 
-subprocesses in conversion, so it works much faster than this program. 
+> And for Windows users, the `Foobar 2000 ` seems to be good enough, it has 
+> a converter that supports Nero AAC Encoder. What's cool, it uses multiple 
+> subprocesses in conversion, so it works much faster than this program. 
+
+###Updated###
+
+PyAACGUI2 also has multiprocess support now, which makes conversion much 
+faster than before. By default, this program use as much processes as the 
+real CPU core number. If you need to run other programs while converting 
+music using PyAACGUI2, it's recommended to set the `corenum ` config option 
+to one less than the number of real CPU cores. **Do not use more process 
+than the number of your CPU cores, or your computer might not be responding 
+for a long while. **
 
 ##Requirements##
 
@@ -47,23 +57,7 @@ NeroAACCodec-1.5.1/
 ```
 
 Now copy these three files inside the `linux ` folder to anywhere you want, 
-and add the path of the folder containing them to your `.bashrc ` file. 
-
-E.G. I put these three files inside `/home/joker/ETC/tools/ `, so I added 
-the following line to the end of my `.bashrc ` file (`~/.bashrc `):
-
-`export PATH=${PATH}:/home/joker/ETC/tools `
-
-###Experimental###
-
-You could now set location of needed Nero programs in the config file rather 
-than setting them in your `.bashrc ` file. If you don't want to change the 
-global `PATH ` variable, you can try this experimental feature by setting 
-the `enc ` and `tag ` option values in config file.
-
-* `enc ` Set the location (currently absolute path recommended) of Nero AAC 
-Encoder.
-* `tag ` Set the location of Nero MPEG-4 Tagger.
+and set the `enc ` and `tag ` option values in config file.
 
 ##Usage##
 
@@ -86,6 +80,10 @@ before being stored in config file (1 == True; 0 == False).
 * `tempdir ` Set temporary file directory.
 * `bitrate ` Set the bitrate (in bps) that passed to Nero AAC encoder.
 * `delorigin ` Delete original files after conversion.
+* `enc ` Set the location (currently absolute path recommended) of Nero AAC 
+Encoder.
+* `tag ` Set the location of Nero MPEG-4 Tagger.
+* `corenum ` Set the maximum process number.
 
 Default values are as follows:
 
@@ -94,6 +92,9 @@ Default values are as follows:
 * `tempdir=` (Use result of python code `tempfile.gettempdir() `)
 * `bitrate=512000` (Set in `i.py `)
 * `delorigin=False` (Set in `i.py `)
+* `enc=neroAacEnc` (Set in `i.py `)
+* `tag=neroAacTag` (Set in `i.py `)
+* `corenum=` (Use result of python code `multiprocessing.cpu_count() `)
 
 ###Notice!###
 
